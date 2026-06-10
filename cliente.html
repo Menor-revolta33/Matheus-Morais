@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área do Cliente</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+.card{
+    background:#f8f8f8;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+button{
+    background:#28a745;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#218838;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Área do Cliente</h1>
+
+<div class="card">
+  <h3>Próximo Agendamento</h3>
+
+<p><strong>Nome:</strong> <span id="nome"></span></p>
+<p><strong>Telefone:</strong> <span id="telefone"></span></p>
+<p><strong>Serviço:</strong> <span id="servico"></span></p>
+<p><strong>Dia:</strong> <span id="dia"></span></p>
+<p><strong>Horário:</strong> <span id="horario"></span></p>
+<button onclick="cancelar()">Cancelar</button>
+<script>
+function cancelar() {
+
+    localStorage.removeItem("agendamento");
+
+    alert("Agendamento cancelado com sucesso!");
+
+    window.location.href = "barbearia dos crias.html";
+}
+</script>
+</div>
+
+<div class="card">
+    <h3>Histórico</h3>
+
+    <ul>
+        <li>Corte Social - 01/06/2026</li>
+        <li>Barba Completa - 20/05/2026</li>
+        <li>Corte + Barba - 10/05/2026</li>
+    </ul>
+</div>
+
+</div>
+
+<script>
+const dados = JSON.parse(localStorage.getItem("agendamento"));
+
+if (dados) {
+    document.getElementById("nome").textContent = dados.nome || "";
+    document.getElementById("telefone").textContent = dados.telefone || "";
+    document.getElementById("servico").textContent = dados.servico || "";
+    document.getElementById("dia").textContent = dados.dia || "";
+    document.getElementById("horario").textContent = dados.horario || "";
+}
+
+</script>
+</body>
+</html>

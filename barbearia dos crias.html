@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BarberStyle</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#111;
+      color:white;
+    }
+
+    header{
+      background:#000;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:2px solid #c59d5f;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
+
+    .logo{
+      color:#c59d5f;
+      font-size:30px;
+      font-weight:bold;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#c59d5f;
+    }
+
+    .hero{
+      height:100vh;
+      background:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1400&auto=format&fit=crop') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content{
+      background:rgba(0,0,0,0.7);
+      padding:40px;
+      border-radius:20px;
+      max-width:700px;
+    }
+
+    .hero h1{
+      color:#c59d5f;
+      font-size:55px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:20px;
+      line-height:1.7;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border:none;
+      border-radius:10px;
+      background:#c59d5f;
+      color:black;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:white;
+    }
+
+    section{
+      padding:80px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      color:#c59d5f;
+      font-size:45px;
+    }
+
+    .servicos{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#1b1b1b;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid #333;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:#c59d5f;
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:25px;
+    }
+
+    .card h3{
+      color:#c59d5f;
+      margin-bottom:15px;
+      font-size:28px;
+    }
+
+    .info{
+      margin:10px 0;
+      color:#ddd;
+      line-height:1.6;
+    }
+
+    .preco{
+      margin-top:20px;
+      color:#4cff81;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .agendamento-box{
+      background:#1b1b1b;
+      border-radius:20px;
+      padding:40px;
+      max-width:900px;
+      margin:auto;
+      border:1px solid #333;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    input, select{
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      background:#2a2a2a;
+      color:white;
+      font-size:16px;
+      width:100%;
+    }
+
+    .full{
+      grid-column:1/3;
+    }
+
+    .status{
+      margin-top:30px;
+      background:#18301f;
+      color:#66ff8f;
+      padding:18px;
+      border-radius:10px;
+      text-align:center;
+      font-weight:bold;
+      font-size:18px;
+      display:none;
+    }
+
+    .profissional-preview{
+      margin-top:30px;
+      display:none;
+      background:#222;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid #333;
+    }
+
+    .profissional-preview img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+    }
+
+    .preview-info{
+      padding:25px;
+    }
+
+    .preview-info h3{
+      color:#c59d5f;
+      margin-bottom:15px;
+      font-size:30px;
+    }
+
+    footer{
+      background:#000;
+      text-align:center;
+      padding:30px;
+      border-top:2px solid #c59d5f;
+      margin-top:80px;
+    }
+
+    @media(max-width:768px){
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .full{
+        grid-column:auto;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:40px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">Barbershop</div>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#agendamento">Agendamento</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+      <h1>onde você sai 10 anos mais novo</h1>
+
+      <p>
+        Cortes na risca, barba alinhada e um ótimo atendimento profissional.
+      </p>
+
+      <a href="#agendamento">
+        <button class="btn">
+          Fazer Agendamento
+        </button>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- SERVIÇOS -->
+
+  <section id="servicos">
+
+    <div class="section-title">
+      <h2>Nossos Serviços</h2>
+    </div>
+
+    <div class="servicos">
+
+      <!-- CARD 1 -->
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Corte</h3>
+
+          <div class="info">✂️ Profissional: Carlos Barber</div>
+
+          <div class="info">⏱️ Duração: 40 minutos</div>
+
+          <div class="info">🔥 Corte </div>
+
+          <div class="preco">R$ 35,00</div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Barba Completa</h3>
+
+          <div class="info">🧔 Profissional: João barber</div>
+
+          <div class="info">⏱️ Duração: 30 minutos</div>
+
+          <div class="info">🔥 Toalha quente + navalha</div>
+
+          <div class="preco">R$ 40,00</div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Corte + Barba</h3>
+
+          <div class="info">💈 Profissional: Rafael barber</div>
+
+          <div class="info">⏱️ Duração: 1 hora</div>
+
+          <div class="info">🔥 Combo completo </div>
+
+          <div class="preco">R$ 70,00</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+      <!-- PROFISSIONAL -->
+      <div class="profissional-preview" id="preview">
+
+        <img id="fotoProfissional"
+        src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="preview-info">
+
+          <h3 id="nomeProfissional">
+            Carlos Barber
+          </h3>
+
+          <div class="info">
+            💈 Serviço:
+            <span id="servicoPreview"></span>
+          </div>
+
+          <div class="info">
+            🕒 Horário:
+            <span id="horarioPreview"></span>
+          </div>
+
+          <div class="info">
+            💳 Pagamento:
+            <span id="pagamentoPreview"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- STATUS -->
+      <div class="status" id="status">
+
+        ✔️ Agendamento confirmado com sucesso!
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <p>📍 Rua das lenda viva, 67 - Centro</p>
+
+    <p>📞 (12) 95786-2129</p>
+
+    <p>© 2026 Barbershop</p>
+
+  </footer>
+
+  <script>
+
+    async function finalizarAgendamento(){
+
+      const nome = document.getElementById("nome").value;
+      const telefone = document.getElementById("telefone").value;
+      const email = document.getElementById("email").value;
+      const servico = document.getElementById("servico").value;
+      const horario = document.getElementById("horario").value;
+      const pagamento = document.getElementById("pagamento").value;
+      if(
+        !nome ||
+        !telefone ||
+        !email ||
+        !servico ||
+        !horario ||
+        !pagamento
+      ){
+
+        alert("Preencha todos os campos!");
+
+        return;
+
+      }
+
+      try{
+
+        // CADASTRA CLIENTE
+        const clienteResponse = await fetch("http://localhost:3000/clientes",{
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+            nome,
+            telefone,
+            email
+          })
+
+        });
+
+        const cliente = await clienteResponse.json();
+
+        // CADASTRA AGENDAMENTO
+        await fetch("http://localhost:3000/agendamentos",{
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+
+            servico,
+            dataHora:horario,
+            clienteId:cliente.id
+
+          })
+
+        });
+
+        // PROFISSIONAIS
+        let profissional = "";
+        let foto = "";
+
+        if(servico === "Corte"){
+
+          profissional = "Carlos Barber";
+
+          foto = "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1200&auto=format&fit=crop";
+
+        }
+
+        else if(servico === "Barba Completa"){
+
+          profissional = "João Classic";
+
+          foto = "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1200&auto=format&fit=crop";
+
+        }
+
+        else{
+
+          profissional = "Rafael Style";
+
+          foto = "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=1200&auto=format&fit=crop";
+
+        }
+
+        // MOSTRAR CARD
+        document.getElementById("preview").style.display = "block";
+
+        document.getElementById("status").style.display = "block";
+
+        document.getElementById("nomeProfissional").innerText = profissional;
+
+        document.getElementById("fotoProfissional").src = foto;
+
+        document.getElementById("servicoPreview").innerText = servico;
+
+        document.getElementById("horarioPreview").innerText = horario;
+
+        document.getElementById("pagamentoPreview").innerText = pagamento;
+
+        // ROLAR PARA BAIXO
+        document.getElementById("preview")
+        .scrollIntoView({ behavior:"smooth" });
+
+      }catch(error){
+
+        console.error(error);
+
+        alert("Erro ao realizar agendamento!");
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
+<!-- ========================= -->
+<!-- AGENDAMENTO -->
+<!-- ========================= -->
+
+<section id="agendamento">
+
+  <div class="section-title">
+    <h2>Finalizar Agendamento</h2>
+  </div>
+
+  <div class="agendamento-box">
+
+    <div class="form-grid">
+
+      <input type="text" id="nome" placeholder="Seu nome">
+
+      <input type="tel" id="telefone" placeholder="Telefone">
+
+      <input type="email" id="email" placeholder="Email">
+
+      <!-- SERVIÇO -->
+      <select id="servico">
+
+        <option value="">Escolha o serviço</option>
+
+        <option value="Corte Degradê">
+          Corte Degradê
+        </option>
+
+        <option value="Barba Completa">
+          Barba Completa
+        </option>
+
+        <option value="Corte + Barba">
+          Corte + Barba
+        </option>
+
+      </select>
+
+      <!-- DIAS -->
+      <select id="dia">
+
+        <option value="">Escolha o dia</option>
+
+        <option>Segunda-feira</option>
+        <option>Terça-feira</option>
+        <option>Quarta-feira</option>
+        <option>Quinta-feira</option>
+        <option>Sexta-feira</option>
+        <option>Sábado</option>
+
+      </select>
+
+      <!-- HORÁRIOS -->
+      <select id="horario">
+
+        <option value="">Escolha o horário</option>
+
+        <option>08:00</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+        <option>13:00</option>
+        <option>14:00</option>
+        <option>15:00</option>
+        <option>16:00</option>
+        <option>17:00</option>
+        <option>18:00</option>
+        <option>19:00</option>
+
+      </select>
+
+      <!-- PAGAMENTO -->
+      <select id="pagamento">
+
+        <option value="">Forma de pagamento</option>
+
+        <option>PIX</option>
+        <option>Cartão</option>
+        <option>Dinheiro</option>
+
+      </select>
+
+      <button onclick="confirmarAgendamento()">
+    Confirmar Agendamento
+</button>
+<script>
+function confirmarAgendamento() {
+
+    const nome = document.getElementById("nome").value;
+    const telefone = document.getElementById("telefone").value;
+    const servico = document.getElementById("servico").value;
+    const dia = document.getElementById("dia").value;
+    const horario = document.getElementById("horario").value;
+
+    localStorage.setItem("agendamento", JSON.stringify({
+        nome,
+        telefone,
+        servico,
+        dia,
+        horario
+    }));
+
+    alert("Agendamento realizado com sucesso!");
+    window.location.href = "cliente.html";
+}
+</script>
+
+</div>
+
+  </div>
+
+</section>
